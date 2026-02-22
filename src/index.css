@@ -367,11 +367,8 @@ body {
   width: 100% !important;
 }
 
-/* Blog Page Section */
 
-.blog-banner-section {
-  background-image: url(assets/hero-slide-3.jpg) !important;
-}
+
 
 .contact-item-icon {
   position: absolute;

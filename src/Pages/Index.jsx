@@ -10,14 +10,13 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Assets (Assuming these paths remain the same in your project)
+// Assets
 import about from '../assets/about.jpg';
 import carctg1 from '../assets/car-ctg-01.png';
 import carctg2 from '../assets/car-ctg-02.png';
 import carctg3 from '../assets/car-ctg-03.png';
 import carctg4 from '../assets/car-ctg-04.png';
 import cardata from '../Cars.json';
-import blogdata from '../Blog.json';
 
 function Index() {
     const [pickUpDate, setPickUpDate] = useState(null);
@@ -75,6 +74,7 @@ function Index() {
                                 <option className="bg-[#0d0d0d]">All Prototypes</option>
                                 <option className="bg-[#0d0d0d]">Hyper Performance</option>
                                 <option className="bg-[#0d0d0d]">Stealth SUV</option>
+                                <option className="bg-[#0d0d0d]">Urban</option>
                             </select>
                         </div>
                         <div className="space-y-3 text-white">
@@ -199,33 +199,6 @@ function Index() {
                                 </div>
                                 <Link to={`/CarDetails/${car.id}`} className="w-full block text-center py-6 bg-white text-black font-black uppercase text-[10px] tracking-[0.3em] rounded-[1.5rem] hover:bg-cyan-500 transition-all duration-500">
                                     Request Access
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* --- 06. JOURNAL --- */}
-            <section className="py-40 bg-[#050505] px-[8%] lg:px-[12%]">
-                <div className="flex flex-col md:flex-row justify-between items-center mb-24 gap-8">
-                    <h2 className="text-5xl font-black italic tracking-tighter uppercase">The <span className="text-cyan-500">Intel.</span></h2>
-                    <div className="h-[1px] flex-grow bg-white/5 mx-10 hidden md:block" />
-                    <button className="uppercase text-[10px] tracking-[0.5em] font-black text-cyan-500 hover:text-white transition-all">Show Archive</button>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    {blogdata.slice(0, 2).map((blog) => (
-                        <div key={blog.id} className="group flex flex-col xl:flex-row gap-10 bg-[#0d0d0d] p-10 rounded-[3.5rem] border border-white/5 hover:border-cyan-500/30 transition-all duration-700">
-                            <div className="w-full xl:w-1/2 h-80 rounded-[2.5rem] overflow-hidden relative">
-                                <div className="absolute inset-0 bg-cyan-500/10 group-hover:opacity-0 transition-opacity z-10" />
-                                <img src={blog.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 brightness-75 group-hover:brightness-100" />
-                            </div>
-                            <div className="w-full xl:w-1/2 flex flex-col justify-center space-y-6">
-                                <span className="text-cyan-500 text-[10px] font-black uppercase tracking-[0.4em]">{blog.date}</span>
-                                <h3 className="text-3xl font-black leading-[1.1] tracking-tighter uppercase italic">{blog.title}</h3>
-                                <p className="text-zinc-500 text-sm font-medium line-clamp-2 leading-relaxed">{blog.excerpt}</p>
-                                <Link to="/Blog" className="group/link flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.3em] text-white hover:text-cyan-500 transition-all">
-                                    Analyze <i className="ri-add-line group-hover/link:rotate-90 transition-transform"></i>
                                 </Link>
                             </div>
                         </div>

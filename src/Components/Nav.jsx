@@ -47,7 +47,7 @@ function Nav() {
 
         {/* --- DESKTOP MENU --- */}
         <ul className="hidden lg:flex items-center gap-10">
-          {['Home', 'About', 'Cars', 'Blog', 'Contact'].map((item) => (
+          {['Home', 'About', 'Cars', 'Contact'].map((item) => (
             <li key={item}>
               <NavLink to={item === 'Home' ? '/' : `/${item.toLowerCase()}`} className={navLinkClasses}>
                 {item}
@@ -96,7 +96,7 @@ function Nav() {
 
         <div className="flex flex-col items-start justify-center h-full space-y-8 px-12 relative z-10">
           <p className="text-cyan-500 text-[10px] font-black tracking-[0.5em] uppercase mb-4 drop-shadow-[0_0_5px_#22d3ee]">Navigation Hub</p>
-          {['Home', 'About', 'Cars', 'Blog', 'Contact'].map((item, index) => (
+          {['Home', 'About', 'Cars', 'Contact'].map((item, index) => (
             <Link 
               key={item}
               to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
