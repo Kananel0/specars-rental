@@ -1,5 +1,5 @@
 {
-  "name": "demo",
+  "name": "specars-rental",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.13",
+    "framer-motion": "^12.34.3",
     "react": "^19.1.1",
     "react-datepicker": "^8.7.0",
     "react-dom": "^19.1.1",

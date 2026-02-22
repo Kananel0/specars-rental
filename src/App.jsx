@@ -4,7 +4,6 @@ import Nav from './Components/Nav'
 import Index from './Pages/Index'
 import About from './Pages/About'
 import Cars from './Pages/Cars'
-import Blog from './Pages/Blog'
 import Contact from './Pages/Contact'
 import CarDetail from './Pages/CarsDetails'
 import Footer from './Components/Footer'
@@ -21,7 +20,6 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/cars' element={<Cars />} />
           <Route path='/CarDetail' element={<CarDetail />} />
-          <Route path='/blog' element={<Blog />} />
           <Route path='/contact' element={<Contact />} />
         </Routes>
         <Footer />
