@@ -9,7 +9,7 @@ function Footer() {
     return (
         <footer className="bg-[#050505] text-white pt-24 pb-10 px-[8%] lg:px-[12%] border-t border-cyan-500/10 relative overflow-hidden">
             
-            {/* Background Kinetic Text - Watermark Style Updated */}
+            {/* Background Kinetic Text - Watermark */}
             <div className="absolute -bottom-10 -right-10 text-[18rem] font-black text-cyan-500/[0.02] select-none pointer-events-none tracking-tighter italic">
                 SPECAR
             </div>
@@ -29,7 +29,6 @@ function Footer() {
                     </div>
 
                     <div className="relative group">
-                        {/* Cyan Pulse Effect */}
                         <div className="absolute -inset-1 bg-cyan-500 rounded-[2rem] blur opacity-5 group-hover:opacity-15 transition duration-1000"></div>
                         <div className="relative flex items-center bg-[#0d0d0d] border border-white/5 rounded-[2rem] p-2 pr-4">
                             <input 
@@ -49,7 +48,7 @@ function Footer() {
                 {/* --- MIDDLE SECTION --- */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                     
-                    {/* Brand Identity - Image Based */}
+                    {/* Brand Identity */}
                     <div className="space-y-8">
                         <Link to='/' className="block group">
                             <img 
@@ -85,14 +84,21 @@ function Footer() {
                         </ul>
                     </div>
 
-                    {/* Garage Categories */}
+                    {/* Legal / Policy Links */}
                     <div>
-                        <h4 className="text-[10px] uppercase tracking-[0.4em] font-black text-cyan-500 mb-8">The Garage</h4>
+                        <h4 className="text-[10px] uppercase tracking-[0.4em] font-black text-cyan-500 mb-8">Legal Portal</h4>
                         <ul className="space-y-4">
-                            {['Hypercars', 'Luxury SUVs', 'Stealth Series', 'Chauffeur Service'].map((item) => (
-                                <li key={item} className="text-zinc-500 hover:text-cyan-500 transition-all cursor-pointer font-bricolage text-sm flex items-center group">
-                                    <span className="h-[1px] w-0 bg-cyan-500 mr-0 group-hover:w-4 group-hover:mr-3 transition-all duration-300"></span>
-                                    {item}
+                            {[
+                                { name: 'Terms of Service', path: '/terms' },
+                                { name: 'Privacy Protocol', path: '/privacy' },
+                                { name: 'Rental Agreement', path: '/agreement' },
+                                { name: 'Cookie Policy', path: '/cookies' }
+                            ].map((item) => (
+                                <li key={item.name}>
+                                    <Link to={item.path} className="text-zinc-500 hover:text-cyan-500 transition-all duration-300 font-bricolage text-sm flex items-center group">
+                                        <span className="h-[1px] w-0 bg-cyan-500 mr-0 group-hover:w-4 group-hover:mr-3 transition-all duration-300"></span>
+                                        {item.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -115,12 +121,12 @@ function Footer() {
                 {/* --- BOTTOM SECTION --- */}
                 <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-zinc-600 text-[9px] uppercase tracking-[0.4em] font-black">
-                        © {currentYear} SPECAR. OPERATED BY PRIVÉ GROUP.
+                        © {currentYear} SPECAR. OPERATED BY PRIVÉ GROUP. ALL SYSTEMS OPERATIONAL.
                     </p>
                     <div className="flex gap-8 text-[9px] uppercase tracking-[0.3em] font-black text-zinc-600">
-                        <a href="#" className="hover:text-cyan-500 transition-colors">Terms</a>
-                        <a href="#" className="hover:text-cyan-500 transition-colors">Privacy</a>
-                        <a href="#" className="hover:text-cyan-500 transition-colors">Cookies</a>
+                        <Link to="/terms" className="hover:text-cyan-500 transition-colors">Legal Terms</Link>
+                        <Link to="/privacy" className="hover:text-cyan-500 transition-colors">Data Privacy</Link>
+                        <Link to="/cookies" className="hover:text-cyan-500 transition-colors">Cookie Node</Link>
                     </div>
                 </div>
 

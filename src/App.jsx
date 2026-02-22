@@ -8,6 +8,12 @@ import Contact from './Pages/Contact'
 import CarDetail from './Pages/CarsDetails'
 import Footer from './Components/Footer'
 
+// Import the legal pages
+// Note: We use the name on the left (e.g., LegalTerms) inside the Routes below
+import LegalTerms from './Pages/Legal Terms'
+import CookieNode from './Pages/Cookie Node'
+import DataPrivacy from './Pages/Data Privacy'
+
 function App() {
 
   return (
@@ -15,12 +21,17 @@ function App() {
       <Router>
         <Nav />
         <Routes>
+          {/* Main Pages */}
           <Route path='/' element={<Index />} />
           <Route path="/car/:id" element={<CarDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/cars' element={<Cars />} />
-          <Route path='/CarDetail' element={<CarDetail />} />
           <Route path='/contact' element={<Contact />} />
+
+          {/* Legal Pages - Names here must match the imports above */}
+          <Route path='/terms' element={<LegalTerms />} />
+          <Route path='/privacy' element={<DataPrivacy />} />
+          <Route path='/cookies' element={<CookieNode />} />
         </Routes>
         <Footer />
       </Router>

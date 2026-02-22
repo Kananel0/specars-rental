@@ -40,3 +40,21 @@
 .read-the-docs {
   color: #888;
 }
+@layer utilities {
+  .stroke-text {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes scanLine {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+.animate-scan {
+  animation: scanLine 8s linear infinite;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

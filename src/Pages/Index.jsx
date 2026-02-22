@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade, Parallax } from "swiper/modules";
+import { motion, AnimatePresence } from 'framer-motion';
 import DatePicker from 'react-datepicker';
 import { Link } from 'react-router-dom';
 
 // Styles
 import 'swiper/css';
 import 'swiper/css/effect-fade';
-import 'swiper/css/pagination';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Assets
@@ -22,186 +22,203 @@ function Index() {
     const [pickUpDate, setPickUpDate] = useState(null);
     const [returnDate, setReturnDate] = useState(null);
 
+    // Animation presets
+    const fadeUp = {
+        initial: { opacity: 0, y: 30 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true },
+        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    };
+
     return (
-        <div className="bg-[#050505] text-white selection:bg-cyan-500 selection:text-black font-bricolage">
+        <div className="bg-[#050505] text-white selection:bg-cyan-500 selection:text-black font-bricolage overflow-x-hidden">
             
-            {/* --- 01. CINEMATIC HERO --- */}
-            <section className="relative h-[100vh] w-full overflow-hidden">
+            {/* --- 01. CINEMATIC HERO (REVISED) --- */}
+            <section className="relative h-screen w-full overflow-hidden">
                 <Swiper
                     modules={[Autoplay, EffectFade, Parallax]}
                     effect="fade"
                     speed={2500}
-                    autoplay={{ delay: 6000 }}
+                    parallax={true}
+                    autoplay={{ delay: 7000 }}
                     loop={true}
                     className="h-full w-full"
                 >
                     {[1, 2, 3].map((num) => (
                         <SwiperSlide key={num}>
                             <div className={`hero-slide hero-slide${num} relative h-full w-full flex items-center px-[8%] lg:px-[12%]`}>
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-black/40 to-transparent z-10" />
+                                {/* Gradients */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/20 to-transparent z-10" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10" />
                                 
-                                <div className="relative z-20 max-w-4xl">
-                                    <span className="inline-block px-4 py-1 mb-6 border border-cyan-500/30 text-cyan-500 text-[10px] uppercase tracking-[0.4em] font-black rounded-full shadow-[0_0_20px_rgba(34,211,238,0.1)]">
-                                        Mayfair HQ • London 2026
-                                    </span>
-                                    <h1 className="text-6xl md:text-[9rem] font-black leading-[0.85] mb-6 italic tracking-tighter uppercase">
-                                        Precision <br />
-                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Defined.</span>
-                                    </h1>
-                                    <p className="text-zinc-400 text-lg md:text-xl max-w-xl mb-10 font-medium leading-relaxed">
-                                        London's elite automotive concierge. Access an unparalleled fleet of stealth-tuned hypercars and performance EVs.
-                                    </p>
-                                    <div className="flex flex-wrap gap-6">
-                                        <Link to="/Cars" className="group relative px-14 py-5 bg-cyan-500 overflow-hidden rounded-2xl transition-all shadow-[0_0_30px_rgba(34,211,238,0.2)]">
-                                            <span className="relative z-10 font-black uppercase text-[10px] tracking-[0.2em] text-black">Enter Showroom</span>
-                                            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-                                        </Link>
+                                <div className="relative z-20 max-w-5xl">
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 1 }}
+                                    >
+                                        <span className="inline-flex items-center gap-3 px-4 py-1.5 mb-8 border border-cyan-500/20 bg-cyan-500/5 backdrop-blur-xl text-cyan-400 text-[9px] uppercase tracking-[0.5em] font-black rounded-full">
+                                            <span className="relative flex h-2 w-2">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                                            </span>
+                                            System Live // 2026 Fleet
+                                        </span>
+                                    </motion.div>
+
+                                    <div className="overflow-hidden">
+                                        <motion.h1 
+                                            initial={{ y: "100%" }}
+                                            animate={{ y: 0 }}
+                                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                                            className="text-7xl md:text-[9vw] font-black leading-[0.85] mb-8 italic tracking-tighter uppercase"
+                                        >
+                                            <span className="block">Unrivaled</span>
+                                            <span className="block text-transparent stroke-text opacity-70">Velocity.</span>
+                                        </motion.h1>
                                     </div>
+
+                                    <motion.p 
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 1.5, delay: 0.8 }}
+                                        className="text-zinc-400 text-lg md:text-xl max-w-xl mb-12 font-light leading-relaxed border-l border-cyan-500/50 pl-8"
+                                    >
+                                        The restricted vault is now open. Procure the world's most 
+                                        advanced hyper-machines through our stealth-integrated concierge.
+                                    </motion.p>
+
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 1, delay: 1.2 }}
+                                    >
+                                        <Link to="/Cars" className="group relative inline-flex items-center gap-8 px-12 py-5 bg-white text-black rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.15)]">
+                                            <span className="relative z-10 font-black uppercase text-[11px] tracking-widest">Enter Showroom</span>
+                                            <div className="h-2 w-2 bg-cyan-500 rounded-full group-hover:scale-[10] transition-transform duration-700" />
+                                        </Link>
+                                    </motion.div>
                                 </div>
                             </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
+
+                {/* Laser Scan Overlay */}
+                <div className="absolute inset-0 pointer-events-none z-20 opacity-20">
+                    <div className="w-full h-[2px] bg-cyan-400 shadow-[0_0_15px_cyan] animate-scan" />
+                </div>
             </section>
 
-            {/* --- 02. FLOATING SEARCH BOX --- */}
-            <div className="relative z-30 px-[8%] lg:px-[12%] -mt-24">
-                <div className="bg-[#0d0d0d]/90 backdrop-blur-3xl border border-white/5 p-10 rounded-[3rem] shadow-2xl">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 items-end">
-                        <div className="space-y-3">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-cyan-500 font-black">Class</label>
-                            <select className="bg-transparent border-b border-white/10 w-full py-3 outline-none focus:border-cyan-500 transition-colors appearance-none font-bold text-sm">
-                                <option className="bg-[#0d0d0d]">All Prototypes</option>
-                                <option className="bg-[#0d0d0d]">Hyper Performance</option>
+            {/* --- 02. HUD SEARCH BAR --- */}
+            <div className="relative z-30 px-[8%] lg:px-[12%] -mt-20">
+                <motion.div 
+                    initial={{ y: 50, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="bg-[#0a0a0a]/90 backdrop-blur-3xl border border-white/10 p-4 rounded-[3rem] shadow-2xl"
+                >
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+                        <div className="bg-white/5 p-6 rounded-[2.5rem] flex flex-col justify-center">
+                            <label className="text-[9px] uppercase tracking-widest text-cyan-500 font-black mb-2">Prototype</label>
+                            <select className="bg-transparent outline-none font-bold text-sm appearance-none cursor-pointer">
+                                <option className="bg-[#0d0d0d]">All Models</option>
+                                <option className="bg-[#0d0d0d]">Hyper</option>
                                 <option className="bg-[#0d0d0d]">Stealth SUV</option>
-                                <option className="bg-[#0d0d0d]">Urban</option>
                             </select>
                         </div>
-                        <div className="space-y-3 text-white">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-cyan-500 font-black">Nexus</label>
-                            <select className="bg-transparent border-b border-white/10 w-full py-3 outline-none focus:border-cyan-500 transition-colors appearance-none font-bold text-sm">
-                                <option className="bg-[#0d0d0d]">London Nexus</option>
+                        <div className="bg-white/5 p-6 rounded-[2.5rem] flex flex-col justify-center">
+                            <label className="text-[9px] uppercase tracking-widest text-cyan-500 font-black mb-2">Nexus</label>
+                            <select className="bg-transparent outline-none font-bold text-sm appearance-none cursor-pointer">
+                                <option className="bg-[#0d0d0d]">London HQ</option>
                                 <option className="bg-[#0d0d0d]">Mayfair Private</option>
                             </select>
                         </div>
-                        <div className="space-y-3 custom-datepicker">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-cyan-500 font-black">Collection</label>
-                            <DatePicker selected={pickUpDate} onChange={setPickUpDate} placeholderText="Select Date" className="bg-transparent border-b border-white/10 w-full py-3 outline-none cursor-pointer font-bold text-sm" />
+                        <div className="bg-white/5 p-6 rounded-[2.5rem]">
+                            <label className="text-[9px] uppercase tracking-widest text-cyan-500 font-black mb-2 block">Collect</label>
+                            <DatePicker selected={pickUpDate} onChange={setPickUpDate} placeholderText="Set Date" className="bg-transparent w-full outline-none font-bold text-sm" />
                         </div>
-                        <div className="space-y-3 custom-datepicker">
-                            <label className="text-[10px] uppercase tracking-[0.3em] text-cyan-500 font-black">Return</label>
-                            <DatePicker selected={returnDate} onChange={setReturnDate} placeholderText="Select Date" className="bg-transparent border-b border-white/10 w-full py-3 outline-none cursor-pointer font-bold text-sm" />
+                        <div className="bg-white/5 p-6 rounded-[2.5rem]">
+                            <label className="text-[9px] uppercase tracking-widest text-cyan-500 font-black mb-2 block">Return</label>
+                            <DatePicker selected={returnDate} onChange={setReturnDate} placeholderText="Set Date" className="bg-transparent w-full outline-none font-bold text-sm" />
                         </div>
-                        <button className="h-[60px] w-full bg-cyan-500 text-black font-black uppercase tracking-widest text-[10px] rounded-2xl hover:bg-white transition-all duration-500 shadow-xl">
-                            Verify Availability
+                        <button className="h-full bg-cyan-500 text-black font-black uppercase tracking-widest text-[11px] rounded-[2.5rem] hover:bg-white transition-all duration-500">
+                            Check Vault
                         </button>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
-            {/* --- 03. ASYMMETRIC ABOUT --- */}
-            <section className="py-40 px-[8%] lg:px-[12%] overflow-hidden">
-                <div className="flex flex-col lg:flex-row items-center gap-24">
-                    <div className="w-full lg:w-1/2 relative">
-                        <div className="absolute -top-16 -left-16 text-[20rem] font-black text-cyan-500/[0.03] select-none italic">01</div>
-                        <div className="relative z-10 border border-white/5 p-4 rounded-[3rem] bg-white/[0.02] backdrop-blur-md">
-                            <img src={about} alt="About" className="w-full h-[700px] object-cover rounded-[2.5rem] grayscale hover:grayscale-0 transition-all duration-1000 brightness-75 hover:brightness-100" />
+            {/* --- 03. BENTO GRID CATEGORIES --- */}
+            <section className="py-40 px-[8%] lg:px-[12%]">
+                <motion.div {...fadeUp} className="mb-20">
+                    <h2 className="text-7xl md:text-9xl font-black italic tracking-tighter uppercase leading-[0.8]">
+                        The <span className="text-cyan-500">Vault</span>
+                    </h2>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[800px]">
+                    {/* Featured Category */}
+                    <motion.div 
+                        whileHover={{ scale: 0.99 }}
+                        className="md:col-span-8 relative bg-[#0d0d0d] rounded-[4rem] overflow-hidden group border border-white/5"
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
+                        <img src={carctg1} className="absolute bottom-0 right-0 w-[80%] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-1000 z-20" />
+                        <div className="absolute top-16 left-16 z-30">
+                            <p className="text-cyan-500 font-black tracking-[0.5em] text-[10px] uppercase mb-4">Level // 01</p>
+                            <h3 className="text-6xl font-black italic uppercase italic tracking-tighter">Hyper Class</h3>
                         </div>
-                        <div className="absolute -bottom-10 -right-8 bg-cyan-500 p-12 rounded-[2.5rem] hidden lg:block shadow-2xl">
-                            <p className="text-6xl font-black text-black italic tracking-tighter">100%</p>
-                            <p className="uppercase text-[10px] font-black tracking-widest mt-2 text-black/60">Electric Vision</p>
-                        </div>
-                    </div>
-                    <div className="w-full lg:w-1/2 space-y-10">
-                        <h2 className="text-6xl md:text-8xl font-black italic leading-[0.85] tracking-tighter uppercase">
-                            Engineered <br />
-                            <span className="text-cyan-500">For The Few.</span>
-                        </h2>
-                        <p className="text-zinc-400 text-xl font-medium leading-relaxed max-w-lg">
-                            We don't just provide transportation. We provide the pinnacle of automotive engineering. Our collection is curated for those who demand stealth, speed, and absolute luxury.
-                        </p>
-                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            {['Biometric Access', 'Stealth Delivery', 'Mayfair Concierge', 'Track Calibrated'].map((text, i) => (
-                                <li key={i} className="flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.3em] text-white">
-                                    <span className="h-2 w-2 bg-cyan-500 rounded-full shadow-[0_0_10px_#00f2ff]" /> {text}
-                                </li>
-                            ))}
-                        </ul>
-                        <button className="group flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-cyan-500 hover:text-white transition-all">
-                            Our Heritage <i className="ri-arrow-right-line group-hover:translate-x-3 transition-transform"></i>
-                        </button>
+                    </motion.div>
+
+                    {/* Secondary Categories Stack */}
+                    <div className="md:col-span-4 grid grid-rows-2 gap-8">
+                        <motion.div whileHover={{ scale: 0.98 }} className="bg-[#111] rounded-[4rem] p-12 relative overflow-hidden group border border-white/5">
+                            <h3 className="text-3xl font-black italic uppercase relative z-10">Stealth</h3>
+                            <img src={carctg3} className="absolute -bottom-10 -right-10 w-full opacity-30 group-hover:opacity-100 transition-opacity" />
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 0.98 }} className="bg-cyan-500 rounded-[4rem] p-12 group flex flex-col justify-between">
+                            <i className="ri-arrow-right-up-line text-5xl text-black/20 group-hover:text-black transition-colors" />
+                            <h3 className="text-4xl font-black italic uppercase text-black">Elite SUV</h3>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* --- 04. CATEGORY CARDS --- */}
-            <section className="py-32 bg-[#080808] px-[8%] lg:px-[12%]">
-                <div className="mb-20 flex justify-between items-end border-b border-white/5 pb-10">
-                    <h2 className="text-5xl font-black italic tracking-tighter uppercase">The <span className="text-cyan-500">Vault</span></h2>
-                    <p className="text-zinc-600 uppercase text-[10px] tracking-[0.5em] font-black">System Browse</p>
+            {/* --- 04. MOST WANTED HORIZONTAL --- */}
+            <section className="py-40 bg-[#030303]">
+                <div className="px-[8%] lg:px-[12%] flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+                    <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase italic leading-none">Prime<br />Selection</h2>
+                    <Link to="/cars" className="text-cyan-500 font-black uppercase tracking-[0.4em] text-[10px] border-b border-cyan-500 pb-2">View Full Fleet</Link>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {[
-                        { title: "Hyper", img: carctg1, count: 12 },
-                        { title: "Elite", img: carctg2, count: 8 },
-                        { title: "Stealth", img: carctg3, count: 15 },
-                        { title: "Urban", img: carctg4, count: 22 },
-                    ].map((item, i) => (
-                        <div key={i} className="group relative bg-[#0d0d0d] p-12 rounded-[3.5rem] h-[520px] overflow-hidden flex flex-col justify-between border border-white/5 hover:border-cyan-500/30 transition-all duration-700">
-                            <div className="relative z-10">
-                                <span className="text-white/[0.03] text-[10rem] font-black absolute -top-10 -left-10 group-hover:text-cyan-500/[0.05] transition-colors italic">0{i+1}</span>
-                                <h3 className="text-3xl font-black mt-10 uppercase italic tracking-tighter">{item.title}</h3>
-                            </div>
-                            <img src={item.img} className="absolute bottom-16 right-[-20%] w-[130%] object-contain grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-1000 pointer-events-none z-10" />
-                            <div className="relative z-20 flex justify-between items-center">
-                                <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-black">{item.count} Prototypes</span>
-                                <div className="h-14 w-14 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-black transition-all">
-                                    <i className="ri-arrow-right-up-line text-2xl" />
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
 
-            {/* --- 05. MOST WANTED --- */}
-            <section className="py-40 px-[8%] lg:px-[12%] relative">
-                <div className="text-center mb-24">
-                    <span className="text-cyan-500 font-black tracking-[0.6em] uppercase text-[10px] drop-shadow-[0_0_10px_#00f2ff]">Top Performance</span>
-                    <h2 className="text-7xl md:text-[6rem] font-black mt-6 tracking-tighter uppercase italic leading-none">Prime Selection</h2>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-14">
-                    {cardata.slice(0, 3).map((car) => (
-                        <div key={car.id} className="group relative bg-[#0d0d0d] rounded-[4rem] overflow-hidden border border-white/5 hover:border-cyan-500/20 transition-all duration-700">
-                            <div className="h-[450px] relative overflow-hidden">
-                                <img src={car.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 brightness-[0.6] group-hover:brightness-100" />
-                                <div className="absolute top-10 left-10 bg-black/90 backdrop-blur-2xl px-8 py-4 rounded-2xl border border-white/5">
-                                    <span className="text-cyan-500 font-black tracking-tighter text-2xl">£{car.price}</span> <span className="text-[10px] text-zinc-500 font-black uppercase ml-2">/ Day</span>
+                <div className="flex gap-10 overflow-x-auto px-[8%] lg:px-[12%] pb-20 no-scrollbar">
+                    {cardata.slice(0, 5).map((car, i) => (
+                        <motion.div 
+                            key={car.id}
+                            initial={{ opacity: 0, x: 100 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                            className="min-w-[400px] bg-[#0d0d0d] rounded-[4rem] border border-white/5 p-4 group"
+                        >
+                            <div className="h-[400px] rounded-[3rem] overflow-hidden relative">
+                                <img src={car.image} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
+                                <div className="absolute top-8 right-8 h-16 w-16 bg-black/80 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/10">
+                                    <i className="ri-share-forward-line text-cyan-500" />
                                 </div>
                             </div>
-                            <div className="p-14 -mt-24 relative z-10 bg-[#0d0d0d] rounded-t-[4rem] space-y-10">
-                                <h3 className="text-4xl font-black tracking-tighter uppercase italic">{car.name}</h3>
-                                <div className="flex justify-between items-center border-y border-white/5 py-10">
-                                    <div className="text-center">
-                                        <p className="text-[10px] text-cyan-500 uppercase font-black tracking-[0.2em] mb-2">Drive</p>
-                                        <p className="text-sm font-bold text-zinc-400">{car.transmission}</p>
-                                    </div>
-                                    <div className="h-10 w-[1px] bg-white/5" />
-                                    <div className="text-center">
-                                        <p className="text-[10px] text-cyan-500 uppercase font-black tracking-[0.2em] mb-2">Source</p>
-                                        <p className="text-sm font-bold text-zinc-400">{car.fuel}</p>
-                                    </div>
-                                    <div className="h-10 w-[1px] bg-white/5" />
-                                    <div className="text-center">
-                                        <p className="text-[10px] text-cyan-500 uppercase font-black tracking-[0.2em] mb-2">Limit</p>
-                                        <p className="text-sm font-bold text-zinc-400">{car.seats} PAX</p>
-                                    </div>
+                            <div className="p-10 text-center">
+                                <h3 className="text-3xl font-black uppercase italic tracking-tighter mb-8">{car.name}</h3>
+                                <div className="flex justify-around mb-10 opacity-40 text-[10px] font-black uppercase tracking-widest">
+                                    <span>{car.transmission}</span>
+                                    <span>{car.fuel}</span>
+                                    <span>{car.seats} Seats</span>
                                 </div>
-                                <Link to={`/CarDetails/${car.id}`} className="w-full block text-center py-6 bg-white text-black font-black uppercase text-[10px] tracking-[0.3em] rounded-[1.5rem] hover:bg-cyan-500 transition-all duration-500">
+                                <Link to={`/car/${car.id}`} className="block w-full py-6 bg-white text-black font-black uppercase text-[11px] tracking-widest rounded-2xl hover:bg-cyan-500 transition-all">
                                     Request Access
                                 </Link>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </section>
