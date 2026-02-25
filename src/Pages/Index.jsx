@@ -17,7 +17,7 @@ import cardata from '../Cars.json';
 const IMG_CAR_CTG_01 = "https://i.postimg.cc/qvvSKn1q/car-ctg-01.jpg";
 const IMG_CAR_CTG_03 = "https://i.postimg.cc/nhhgm73M/car-ctg-03.jpg";
 
-// Hero Slider & Prime Selection Links
+// The 6 links you provided for the Prime Selection / Fleet
 const carLinks = [
     "https://i.postimg.cc/D0zpG3cW/cars-slide-01.jpg",
     "https://i.postimg.cc/9MbNzQyw/cars-slide-02.jpg",
@@ -41,45 +41,66 @@ function Index() {
     return (
         <div className="bg-[#050505] text-white selection:bg-cyan-500 selection:text-black font-bricolage overflow-x-hidden">
             
-            {/* --- 01. CINEMATIC HERO --- */}
+            {/* --- 01. CINEMATIC HERO (Original CSS Classes Restored) --- */}
             <section className="relative h-screen w-full overflow-hidden">
                 <Swiper
                     modules={[Autoplay, EffectFade, Parallax]}
                     effect="fade"
-                    speed={2000}
+                    speed={2500}
                     parallax={true}
-                    autoplay={{ delay: 5000 }}
+                    autoplay={{ delay: 7000 }}
                     loop={true}
                     className="h-full w-full"
                 >
-                    {carLinks.map((imgUrl, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="relative h-full w-full flex items-center px-[8%] lg:px-[12%]">
-                                <div 
-                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[5000ms] scale-110"
-                                    style={{ backgroundImage: `url(${imgUrl})` }}
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-10" />
+                    {[1, 2, 3].map((num) => (
+                        <SwiperSlide key={num}>
+                            {/* Restored your hero-slide class names for your custom CSS backgrounds */}
+                            <div className={`hero-slide hero-slide${num} relative h-full w-full flex items-center px-[8%] lg:px-[12%]`}>
+                                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/20 to-transparent z-10" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10" />
                                 
                                 <div className="relative z-20 max-w-5xl">
-                                    <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }}>
+                                    <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
                                         <span className="inline-flex items-center gap-3 px-4 py-1.5 mb-8 border border-cyan-500/20 bg-cyan-500/5 backdrop-blur-xl text-cyan-400 text-[9px] uppercase tracking-[0.5em] font-black rounded-full">
+                                            <span className="relative flex h-2 w-2">
+                                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                                            </span>
                                             System Live // 2026 Fleet
                                         </span>
                                     </motion.div>
-                                    <h1 className="text-7xl md:text-[9vw] font-black leading-[0.85] mb-8 italic tracking-tighter uppercase">
-                                        Unrivaled <span className="block text-transparent stroke-text opacity-70">Velocity.</span>
-                                    </h1>
-                                    <Link to="/Cars" className="group relative inline-flex items-center gap-8 px-12 py-5 bg-white text-black rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.15)]">
-                                        <span className="relative z-10 font-black uppercase text-[11px] tracking-widest">Enter Showroom</span>
-                                        <div className="h-2 w-2 bg-cyan-500 rounded-full group-hover:scale-[10] transition-transform duration-700" />
-                                    </Link>
+
+                                    <div className="overflow-hidden">
+                                        <motion.h1 
+                                            initial={{ y: "100%" }}
+                                            animate={{ y: 0 }}
+                                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                                            className="text-7xl md:text-[9vw] font-black leading-[0.85] mb-8 italic tracking-tighter uppercase"
+                                        >
+                                            <span className="block">Unrivaled</span>
+                                            <span className="block text-transparent stroke-text opacity-70">Velocity.</span>
+                                        </motion.h1>
+                                    </div>
+
+                                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, delay: 0.8 }} className="text-zinc-400 text-lg md:text-xl max-w-xl mb-12 font-light leading-relaxed border-l border-cyan-500/50 pl-8">
+                                        The restricted vault is now open. Procure the world's most 
+                                        advanced hyper-machines through our stealth-integrated concierge.
+                                    </motion.p>
+
+                                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1.2 }}>
+                                        <Link to="/Cars" className="group relative inline-flex items-center gap-8 px-12 py-5 bg-white text-black rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.15)]">
+                                            <span className="relative z-10 font-black uppercase text-[11px] tracking-widest">Enter Showroom</span>
+                                            <div className="h-2 w-2 bg-cyan-500 rounded-full group-hover:scale-[10] transition-transform duration-700" />
+                                        </Link>
+                                    </motion.div>
                                 </div>
                             </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
+                <div className="absolute inset-0 pointer-events-none z-20 opacity-20">
+                    <div className="w-full h-[2px] bg-cyan-400 shadow-[0_0_15px_cyan] animate-scan" />
+                </div>
             </section>
 
             {/* --- 02. HUD SEARCH BAR --- */}
@@ -91,6 +112,13 @@ function Index() {
                             <select className="bg-transparent outline-none font-bold text-sm appearance-none cursor-pointer">
                                 <option className="bg-[#0d0d0d]">All Models</option>
                                 <option className="bg-[#0d0d0d]">Hyper</option>
+                                <option className="bg-[#0d0d0d]">Stealth SUV</option>
+                            </select>
+                        </div>
+                        <div className="bg-white/5 p-6 rounded-[2.5rem] flex flex-col justify-center">
+                            <label className="text-[9px] uppercase tracking-widest text-cyan-500 font-black mb-2">Nexus</label>
+                            <select className="bg-transparent outline-none font-bold text-sm appearance-none cursor-pointer">
+                                <option className="bg-[#0d0d0d]">London HQ</option>
                             </select>
                         </div>
                         <div className="bg-white/5 p-6 rounded-[2.5rem]">
@@ -101,7 +129,7 @@ function Index() {
                             <label className="text-[9px] uppercase tracking-widest text-cyan-500 font-black mb-2 block">Return</label>
                             <DatePicker selected={returnDate} onChange={setReturnDate} placeholderText="Set Date" className="bg-transparent w-full outline-none font-bold text-sm" />
                         </div>
-                        <button className="lg:col-span-2 h-full bg-cyan-500 text-black font-black uppercase tracking-widest text-[11px] rounded-[2.5rem] hover:bg-white transition-all duration-500">
+                        <button className="h-full bg-cyan-500 text-black font-black uppercase tracking-widest text-[11px] rounded-[2.5rem] hover:bg-white transition-all duration-500">
                             Check Vault
                         </button>
                     </div>
@@ -112,19 +140,19 @@ function Index() {
             <section className="py-40 px-[8%] lg:px-[12%]">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[800px]">
                     <motion.div whileHover={{ scale: 0.99 }} className="md:col-span-8 relative bg-[#0d0d0d] rounded-[4rem] overflow-hidden group border border-white/5">
-                        <img src={IMG_CAR_CTG_01} alt="Hyper" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
-                        <div className="absolute top-16 left-16 z-20">
+                        <img src={IMG_CAR_CTG_01} alt="Hyper" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
+                        <div className="absolute top-16 left-16 z-30">
                             <p className="text-cyan-500 font-black tracking-[0.5em] text-[10px] uppercase mb-4">Level // 01</p>
-                            <h3 className="text-6xl font-black italic uppercase tracking-tighter">Hyper Class</h3>
+                            <h3 className="text-6xl font-black italic uppercase italic tracking-tighter">Hyper Class</h3>
                         </div>
                     </motion.div>
 
                     <div className="md:col-span-4 grid grid-rows-2 gap-8">
-                        <motion.div whileHover={{ scale: 0.98 }} className="relative bg-[#111] rounded-[4rem] overflow-hidden group border border-white/5">
-                            <img src={IMG_CAR_CTG_03} alt="Stealth" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                        <motion.div whileHover={{ scale: 0.98 }} className="bg-[#111] rounded-[4rem] relative overflow-hidden group border border-white/5">
+                            <img src={IMG_CAR_CTG_03} alt="Stealth" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" />
                             <div className="absolute top-12 left-12 z-10">
-                                <h3 className="text-3xl font-black italic uppercase">Stealth</h3>
+                                <h3 className="text-3xl font-black italic uppercase relative z-10">Stealth</h3>
                             </div>
                         </motion.div>
                         <motion.div whileHover={{ scale: 0.98 }} className="bg-cyan-500 rounded-[4rem] p-12 group flex flex-col justify-between">
@@ -135,7 +163,7 @@ function Index() {
                 </div>
             </section>
 
-            {/* --- 04. PRIME SELECTION (UPDATED WITH LINKS) --- */}
+            {/* --- 04. PRIME SELECTION (Updated with your links) --- */}
             <section className="py-40 bg-[#030303]">
                 <div className="px-[8%] lg:px-[12%] flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                     <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase italic leading-none">Prime<br />Selection</h2>
@@ -152,12 +180,8 @@ function Index() {
                             className="min-w-[400px] bg-[#0d0d0d] rounded-[4rem] border border-white/5 p-4 group"
                         >
                             <div className="h-[400px] rounded-[3rem] overflow-hidden relative">
-                                {/* OVERRIDE: Using the carLinks array to replace the JSON local path */}
-                                <img 
-                                    src={carLinks[i % carLinks.length]} 
-                                    alt={car.name} 
-                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" 
-                                />
+                                {/* Using the new links provided for the fleet section */}
+                                <img src={carLinks[i % carLinks.length]} alt={car.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" />
                                 <div className="absolute top-8 right-8 h-16 w-16 bg-black/80 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/10">
                                     <i className="ri-share-forward-line text-cyan-500" />
                                 </div>
