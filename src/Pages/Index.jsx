@@ -11,6 +11,7 @@ import 'swiper/css/effect-fade';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Data
+import cardata from '../Cars.json';
 
 // Image Links
 const IMG_CAR_CTG_01 = "https://i.postimg.cc/qvvSKn1q/car-ctg-01.jpg";

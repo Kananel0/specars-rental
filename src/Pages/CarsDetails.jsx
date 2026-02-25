@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import carData from '../Cars.json';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
