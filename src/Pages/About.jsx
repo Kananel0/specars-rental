@@ -9,8 +9,8 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Assets - High-Quality Updated Links
-import logo from '../assets/logo.png'; 
+// Assets
+const logo = "https://i.postimg.cc/mD3m6vM8/logo.png"; // Placeholder for your local asset
 const about = "https://i.postimg.cc/Bv8zY3Wk/about.jpg";
 const carctg1 = "https://i.postimg.cc/qvvSKn1q/car-ctg-01.jpg";
 const carctg2 = "https://i.postimg.cc/Bn7yB6z2/car-ctg-02.jpg";
@@ -37,7 +37,7 @@ function About() {
     const openreturnCalendar = () => returnPickerRef.current?.setFocus();
 
     return (
-        <div ref={containerRef} className="bg-[#050505] text-white font-bricolage selection:bg-cyan-500 selection:text-black antialiased">
+        <div ref={containerRef} className="bg-[#050505] text-white font-sans selection:bg-cyan-500 selection:text-black antialiased">
             
             {/* --- HERO SECTION --- */}
             <section className="relative min-h-screen flex items-center px-[8%] pt-20">
@@ -109,7 +109,7 @@ function About() {
                     <p className="text-zinc-500 mt-2 tracking-widest uppercase text-xs">Exclusively Curated in London</p>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[800px]">
+                <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[800px]">
                     <BentoCard title="Prestige" img={carctg1} count="25" className="md:col-span-2 md:row-span-2" />
                     <BentoCard title="Track" img={carctg2} count="12" className="md:col-span-2 md:row-span-1" />
                     <BentoCard title="Grand Tourer" img={carctg4} count="18" className="md:col-span-1 md:row-span-1" />
@@ -158,13 +158,6 @@ function About() {
                     ))}
                 </Swiper>
             </section>
-
-            <style jsx>{`
-                .stroke-text-white {
-                    -webkit-text-stroke: 1px white;
-                    color: transparent;
-                }
-            `}</style>
         </div>
     );
 }
@@ -186,20 +179,33 @@ const BookingField = ({ label, icon, options }) => (
 
 const BentoCard = ({ title, count, img, className }) => (
     <motion.div 
-        whileHover={{ scale: 0.98 }}
-        className={`relative bg-zinc-900/50 border border-white/5 rounded-[2.5rem] overflow-hidden group cursor-pointer ${className}`}
+        whileHover={{ scale: 0.99 }}
+        className={`relative bg-zinc-900 border border-white/10 rounded-[2.5rem] overflow-hidden group cursor-pointer ${className}`}
     >
-        <div className="absolute top-10 left-10 z-20">
-            <h4 className="text-4xl font-bold group-hover:text-cyan-400 transition-colors uppercase tracking-tighter">{title}</h4>
-            <p className="text-zinc-500 font-mono text-xs">{count}+ SECURE UNITS</p>
+        {/* Text Layer - Ensuring high contrast */}
+        <div className="absolute top-8 left-8 z-20">
+            <h4 className="text-3xl md:text-4xl font-bold group-hover:text-cyan-400 transition-colors uppercase tracking-tighter drop-shadow-md">
+                {title}
+            </h4>
+            <p className="text-zinc-400 font-mono text-[10px] mt-1 tracking-widest bg-black/30 backdrop-blur-sm inline-block px-2 py-1 rounded">
+                {count}+ SECURE UNITS
+            </p>
         </div>
-        <img 
-            src={img} 
-            loading="lazy"
-            alt={title}
-            className="absolute bottom-0 right-0 w-[90%] h-auto object-contain translate-x-10 translate-y-10 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-700 pointer-events-none drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]" 
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+        {/* Image Layer - Filling the entire card */}
+        <div className="absolute inset-0 w-full h-full">
+            <img 
+                src={img} 
+                loading="lazy"
+                alt={title}
+                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 grayscale-[0.3] group-hover:grayscale-0" 
+            />
+            {/* Overlay Gradient to fade the image slightly at the top for text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/20 group-hover:from-black/40 transition-all duration-700" />
+        </div>
+
+        {/* Interaction Glow */}
+        <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
     </motion.div>
 );
 
