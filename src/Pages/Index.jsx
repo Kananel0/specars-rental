@@ -13,15 +13,18 @@ import 'react-datepicker/dist/react-datepicker.css';
 // Data
 import cardata from '../Cars.json';
 
-// Image Links (Postimg)
+// Bento Category Image Links
 const IMG_CAR_CTG_01 = "https://i.postimg.cc/qvvSKn1q/car-ctg-01.jpg";
 const IMG_CAR_CTG_03 = "https://i.postimg.cc/nhhgm73M/car-ctg-03.jpg";
 
-// Hero Backgrounds
+// Hero Slider Image Links
 const heroImages = [
-    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000",
-    "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=2000",
-    "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=2000"
+    "https://i.postimg.cc/D0zpG3cW/cars-slide-01.jpg",
+    "https://i.postimg.cc/9MbNzQyw/cars-slide-02.jpg",
+    "https://i.postimg.cc/90fg9HBy/cars-slide-03.jpg",
+    "https://i.postimg.cc/50bRxCQJ/cars-slide-04.jpg",
+    "https://i.postimg.cc/mDB5bHzp/cars-slide-05.jpg",
+    "https://i.postimg.cc/SKWPFrst/cars-slide-06.jpg"
 ];
 
 function Index() {
@@ -43,27 +46,26 @@ function Index() {
                 <Swiper
                     modules={[Autoplay, EffectFade, Parallax]}
                     effect="fade"
-                    speed={2500}
+                    speed={2000}
                     parallax={true}
-                    autoplay={{ delay: 7000 }}
+                    autoplay={{ delay: 5000 }}
                     loop={true}
                     className="h-full w-full"
                 >
                     {heroImages.map((imgUrl, index) => (
                         <SwiperSlide key={index}>
-                            <div 
-                                className="relative h-full w-full flex items-center px-[8%] lg:px-[12%] bg-cover bg-center"
-                                style={{ backgroundImage: `url(${imgUrl})` }}
-                            >
+                            <div className="relative h-full w-full flex items-center px-[8%] lg:px-[12%]">
+                                {/* Slide Background */}
+                                <div 
+                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[5000ms] scale-110 group-active:scale-100"
+                                    style={{ backgroundImage: `url(${imgUrl})` }}
+                                />
+                                {/* Overlays */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-10" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10" />
                                 
                                 <div className="relative z-20 max-w-5xl">
-                                    <motion.div
-                                        initial={{ opacity: 0, x: -50 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 1 }}
-                                    >
+                                    <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }}>
                                         <span className="inline-flex items-center gap-3 px-4 py-1.5 mb-8 border border-cyan-500/20 bg-cyan-500/5 backdrop-blur-xl text-cyan-400 text-[9px] uppercase tracking-[0.5em] font-black rounded-full">
                                             <span className="relative flex h-2 w-2">
                                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
@@ -85,21 +87,12 @@ function Index() {
                                         </motion.h1>
                                     </div>
 
-                                    <motion.p 
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 1.5, delay: 0.8 }}
-                                        className="text-zinc-400 text-lg md:text-xl max-w-xl mb-12 font-light leading-relaxed border-l border-cyan-500/50 pl-8"
-                                    >
+                                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.5, delay: 0.8 }} className="text-zinc-400 text-lg md:text-xl max-w-xl mb-12 font-light leading-relaxed border-l border-cyan-500/50 pl-8">
                                         The restricted vault is now open. Procure the world's most 
                                         advanced hyper-machines through our stealth-integrated concierge.
                                     </motion.p>
 
-                                    <motion.div 
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 1, delay: 1.2 }}
-                                    >
+                                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1.2 }}>
                                         <Link to="/Cars" className="group relative inline-flex items-center gap-8 px-12 py-5 bg-white text-black rounded-full overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(255,255,255,0.15)]">
                                             <span className="relative z-10 font-black uppercase text-[11px] tracking-widest">Enter Showroom</span>
                                             <div className="h-2 w-2 bg-cyan-500 rounded-full group-hover:scale-[10] transition-transform duration-700" />
@@ -114,12 +107,7 @@ function Index() {
 
             {/* --- 02. HUD SEARCH BAR --- */}
             <div className="relative z-30 px-[8%] lg:px-[12%] -mt-20">
-                <motion.div 
-                    initial={{ y: 50, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="bg-[#0a0a0a]/90 backdrop-blur-3xl border border-white/10 p-4 rounded-[3rem] shadow-2xl"
-                >
+                <motion.div initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} className="bg-[#0a0a0a]/90 backdrop-blur-3xl border border-white/10 p-4 rounded-[3rem] shadow-2xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
                         <div className="bg-white/5 p-6 rounded-[2.5rem] flex flex-col justify-center">
                             <label className="text-[9px] uppercase tracking-widest text-cyan-500 font-black mb-2">Prototype</label>
@@ -160,54 +148,47 @@ function Index() {
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-auto md:h-[800px]">
-                    {/* Featured Category: Hyper Class */}
+                    {/* Hyper Class - Large Card */}
                     <motion.div 
                         whileHover={{ scale: 0.99 }}
                         className="md:col-span-8 relative bg-[#0d0d0d] rounded-[4rem] overflow-hidden group border border-white/5"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
-                        
-                        {/* Perfect fit: object-cover and bottom alignment */}
                         <img 
                             src={IMG_CAR_CTG_01} 
                             alt="Hyper Class" 
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 z-0" 
+                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1500ms]" 
                         />
-                        
-                        <div className="absolute top-16 left-16 z-30">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+                        <div className="absolute top-16 left-16 z-20">
                             <p className="text-cyan-500 font-black tracking-[0.5em] text-[10px] uppercase mb-4">Level // 01</p>
                             <h3 className="text-6xl font-black italic uppercase tracking-tighter">Hyper Class</h3>
                         </div>
                     </motion.div>
 
-                    {/* Secondary Categories Stack */}
+                    {/* Secondary Stack */}
                     <div className="md:col-span-4 grid grid-rows-2 gap-8">
                         {/* Stealth Card */}
-                        <motion.div whileHover={{ scale: 0.98 }} className="bg-[#111] rounded-[4rem] relative overflow-hidden group border border-white/5">
-                            {/* Full-bleed background fit */}
+                        <motion.div whileHover={{ scale: 0.98 }} className="relative bg-[#111] rounded-[4rem] overflow-hidden group border border-white/5">
                             <img 
                                 src={IMG_CAR_CTG_03} 
                                 alt="Stealth" 
-                                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
+                                className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
                             />
                             <div className="absolute top-12 left-12 z-10">
                                 <h3 className="text-3xl font-black italic uppercase">Stealth</h3>
                             </div>
                         </motion.div>
 
-                        {/* Elite SUV Card */}
-                        <motion.div whileHover={{ scale: 0.98 }} className="bg-cyan-500 rounded-[4rem] p-12 group flex flex-col justify-between cursor-pointer">
-                            <div className="flex justify-between items-start">
-                                <i className="ri-arrow-right-up-line text-5xl text-black/20 group-hover:text-black transition-colors" />
-                                <span className="text-black font-black text-[10px] uppercase tracking-widest">Available Now</span>
-                            </div>
+                        {/* SUV Card */}
+                        <motion.div whileHover={{ scale: 0.98 }} className="bg-cyan-500 rounded-[4rem] p-12 group flex flex-col justify-between">
+                            <i className="ri-arrow-right-up-line text-5xl text-black/20 group-hover:text-black transition-colors" />
                             <h3 className="text-4xl font-black italic uppercase text-black">Elite SUV</h3>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* --- 04. PRIME SELECTION --- */}
+            {/* --- 04. MOST WANTED --- */}
             <section className="py-40 bg-[#030303]">
                 <div className="px-[8%] lg:px-[12%] flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                     <h2 className="text-6xl md:text-8xl font-black tracking-tighter uppercase italic leading-none">Prime<br />Selection</h2>
