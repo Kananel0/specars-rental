@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// Import your logo image
 import Logo from '../assets/logo.png'; 
 
 function Footer() {

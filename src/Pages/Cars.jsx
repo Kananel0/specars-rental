@@ -3,7 +3,7 @@ import cardata from "../Cars.json";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Ensure you have Remix Icons: <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+// Icons: <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
 function Cars() {
     const [searchTerm, setSearchTerm] = useState("");

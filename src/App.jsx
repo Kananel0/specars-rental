@@ -8,7 +8,7 @@ import Contact from './Pages/Contact'
 import CarDetail from './Pages/CarsDetails'
 import Footer from './Components/Footer'
 
-// Import the legal pages
+// legal pages
 // Note: We use the name on the left (e.g., LegalTerms) inside the Routes below
 import LegalTerms from './Pages/Legal Terms'
 import CookieNode from './Pages/Cookie Node'

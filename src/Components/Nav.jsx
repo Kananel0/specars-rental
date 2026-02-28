@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-// Import your generated logo image here
 import Logo from '../assets/logo.png'; 
 
 function Nav() {
@@ -36,7 +35,6 @@ function Nav() {
           : 'bg-transparent border-transparent'}
       `}>
         
-        {/* --- LOGO: Image Based --- */}
         <Link to='/' className="relative group">
           <img 
             src={Logo} 
