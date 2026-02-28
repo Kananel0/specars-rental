@@ -9,9 +9,12 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Assets
-const logo = "https://i.postimg.cc/mD3m6vM8/logo.png"; // Placeholder for your local asset
-const about = "https://i.postimg.cc/Bv8zY3Wk/about.jpg";
+// ASSETS 
+// Local assets should be placed in the /public folder
+const logo = "/logo.png"; 
+const about = "/about.jpg";
+
+// External assets
 const carctg1 = "https://i.postimg.cc/qvvSKn1q/car-ctg-01.jpg";
 const carctg2 = "https://i.postimg.cc/Bn7yB6z2/car-ctg-02.jpg";
 const carctg3 = "https://i.postimg.cc/nhhgm73M/car-ctg-03.jpg";
@@ -102,7 +105,7 @@ function About() {
                 </motion.div>
             </section>
 
-            {/* --- BENTO GRID: HQ CAR CATEGORIES --- */}
+            {/* --- BENTO GRID --- */}
             <section className="py-32 px-[8%]">
                 <div className="text-center mb-20">
                     <h2 className="text-5xl font-bold tracking-tighter uppercase">The Specars <span className="text-cyan-500">Vault</span></h2>
@@ -182,7 +185,6 @@ const BentoCard = ({ title, count, img, className }) => (
         whileHover={{ scale: 0.99 }}
         className={`relative bg-zinc-900 border border-white/10 rounded-[2.5rem] overflow-hidden group cursor-pointer ${className}`}
     >
-        {/* Text Layer - Ensuring high contrast */}
         <div className="absolute top-8 left-8 z-20">
             <h4 className="text-3xl md:text-4xl font-bold group-hover:text-cyan-400 transition-colors uppercase tracking-tighter drop-shadow-md">
                 {title}
@@ -191,8 +193,6 @@ const BentoCard = ({ title, count, img, className }) => (
                 {count}+ SECURE UNITS
             </p>
         </div>
-
-        {/* Image Layer - Filling the entire card */}
         <div className="absolute inset-0 w-full h-full">
             <img 
                 src={img} 
@@ -200,11 +200,8 @@ const BentoCard = ({ title, count, img, className }) => (
                 alt={title}
                 className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 grayscale-[0.3] group-hover:grayscale-0" 
             />
-            {/* Overlay Gradient to fade the image slightly at the top for text legibility */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/20 group-hover:from-black/40 transition-all duration-700" />
         </div>
-
-        {/* Interaction Glow */}
         <div className="absolute inset-0 bg-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
     </motion.div>
 );
