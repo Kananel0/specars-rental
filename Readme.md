@@ -57,6 +57,6 @@ ________________________________________
 
 ## 🔗 Links
 - Live: https://specars.co.uk
-- YT VID: https://...
-- GitHub: Kananel0/specars-rental
+- YT VID: (https://youtu.be/ynfl-gbb9FI)
+- GitHub:https://github.com/Kananel0/specars-rental
 
