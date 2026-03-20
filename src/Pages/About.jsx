@@ -3,6 +3,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, EffectCoverflow } from "swiper/modules";
 import DatePicker from 'react-datepicker';
+import Logo from '../assets/logo.png'; 
+
 
 // Styles
 import 'swiper/css';
@@ -10,8 +12,7 @@ import 'swiper/css/effect-coverflow';
 import 'react-datepicker/dist/react-datepicker.css';
 
 // Assets
-const logo = "https://i.postimg.cc/mD3m6vM8/logo.png"; // Placeholder for your local asset
-const about = "https://i.postimg.cc/Bv8zY3Wk/about.jpg";
+const logo = Logo;const about = "https://i.postimg.cc/Bv8zY3Wk/about.jpg";
 const carctg1 = "https://i.postimg.cc/qvvSKn1q/car-ctg-01.jpg";
 const carctg2 = "https://i.postimg.cc/Bn7yB6z2/car-ctg-02.jpg";
 const carctg3 = "https://i.postimg.cc/nhhgm73M/car-ctg-03.jpg";
