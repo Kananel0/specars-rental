@@ -151,7 +151,6 @@ function About() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
                                 <div className="absolute bottom-8 left-8">
-                                    <h4 className="text-2xl font-bold uppercase tracking-tighter">Director {i + 1}</h4>
                                     <p className="text-cyan-400 text-sm tracking-[0.2em] uppercase font-black">Mayfair Operations</p>
                                 </div>
                             </div>
