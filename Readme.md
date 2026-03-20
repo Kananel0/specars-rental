@@ -52,7 +52,7 @@ ________________________________________
 •	npm run dev: Boot the local development environment.
 •	npm run build: Compile the "Production-Ready" node.
 •	npm run lint: Execute ESLint protocols to ensure code integrity.
-•	## 📸 Screenshots
+•
    
 
 ## 🔗 Links
